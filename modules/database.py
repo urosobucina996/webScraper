@@ -14,7 +14,7 @@ def executeQuery(data):
 
     mysqlcursos = connect.cursor()
 
-    sql = "Insert into scriptData(link,linkName) values(%s,%s)"
+    sql = "Insert into guitars(name,price,created) values(%s,%s,%s)"
 
     mysqlcursos.executemany(sql,data)
 
