@@ -15,7 +15,7 @@ def parseHtml(url):
 
 # open connection and grab pages content
     #uClient = uReq.Request(url,HEADERS)
-    url = 'https://lyrastyle.rs/category/elektricne-gitare?brands=fender'
+    #url = ''
     uClient = req.get(url,HEADERS)
     pageHtml = uClient.content
 

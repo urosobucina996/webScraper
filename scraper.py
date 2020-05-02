@@ -2,20 +2,34 @@ from modules import request
 from modules import database
 from sys import exit
 from datetime import datetime
+import sys, getopt
 
-tag = request.parseHtml('http://web.mta.info/developers/turnstile.html')
-rows = []
-for item in tag:
+try:
+     #MAKE MAN PAGE FOR YOUR SCRIPT
+     if(getopt.getopt(sys.argv,"h")[1][1] == '-h'):
+          print("Man page for scraper script")
+          exit(0)
+     else:
+          exit(0)
 
-     # find all vraca niz a find ne
-     single = item.find('div',{'class':'product-details'})  
+     #tag = request.parseHtml('https://lyrastyle.rs/category/elektricne-gitare?brands=fender')
+     tag = request.parseHtml(sys.argv[1])
+     rows = []
+     for item in tag:
 
-     #moze da vrati none ako nije nasao price class
-     if single.find('div',{'class':'price'}) is not None:
-          sritpPrice = single.find('div',{'class':'price'}).text[:-8] 
-          castedPrice = int(sritpPrice.replace('.',''))
-          # NEMA ZNAKOVA U BROJEVIMA 
-          rows.append((single.h3.a.text,castedPrice,datetime.now()))
+          # find all vraca niz a find ne
+          single = item.find('div',{'class':'product-details'})  
 
-database.executeQuery(rows)
+          #moze da vrati none ako nije nasao price class
+          if single.find('div',{'class':'price'}) is not None:
+               sritpPrice = single.find('div',{'class':'price'}).text[:-8] 
+               castedPrice = int(sritpPrice.replace('.',''))
+               # NEMA ZNAKOVA U BROJEVIMA 
+               rows.append((single.h3.a.text,castedPrice,datetime.now()))
+
+     database.executeQuery(rows)
+     
+except IndexError:
+     print('Pass link.')
+     exit(0)
 

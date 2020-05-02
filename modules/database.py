@@ -12,6 +12,8 @@ connect = mysql.connect(
 
 def executeQuery(data):
 
+    # Try and catche database mistakes
+    # Do not insert same data when calling a script
     mysqlcursos = connect.cursor()
 
     sql = "Insert into guitars(name,price,created) values(%s,%s,%s)"
