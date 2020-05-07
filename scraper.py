@@ -9,14 +9,12 @@ try:
      if(getopt.getopt(sys.argv,"h")[1][1] == '-h'):
           print("Man page for scraper script")
           exit(0)
-     else:
-          exit(0)
-
+     
      #tag = request.parseHtml('https://lyrastyle.rs/category/elektricne-gitare?brands=fender')
      tag = request.parseHtml(sys.argv[1])
      rows = []
      for item in tag:
-
+          print(tag)
           # find all vraca niz a find ne
           single = item.find('div',{'class':'product-details'})  
 

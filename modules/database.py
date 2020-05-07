@@ -16,7 +16,8 @@ def executeQuery(data):
     # Do not insert same data when calling a script
     mysqlcursos = connect.cursor()
 
-    sql = "Insert into guitars(name,price,created) values(%s,%s,%s)"
+    # INSERT IGNORE je da se ne bi pravili duplikati imena u bazi
+    sql = "Insert IGNORE into guitars(name,price,created) values(%s,%s,%s)"
 
     mysqlcursos.executemany(sql,data)
 
