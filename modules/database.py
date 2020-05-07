@@ -13,7 +13,6 @@ connect = mysql.connect(
 def executeQuery(data):
 
     # Try and catche database mistakes
-    # Do not insert same data when calling a script
     mysqlcursos = connect.cursor()
 
     # INSERT IGNORE je da se ne bi pravili duplikati imena u bazi

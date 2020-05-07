@@ -7,7 +7,9 @@ import sys, getopt
 try:
      #MAKE MAN PAGE FOR YOUR SCRIPT
      if(getopt.getopt(sys.argv,"h")[1][1] == '-h'):
-          print("Man page for scraper script")
+          f = open("man/man_page.txt")
+          print(f.read())
+          f.close()
           exit(0)
      
      #tag = request.parseHtml('https://lyrastyle.rs/category/elektricne-gitare?brands=fender')
