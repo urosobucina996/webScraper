@@ -23,4 +23,6 @@ def executeQuery(data):
 
     connect.commit()
 
+    connect.close()
+
     print(mysqlcursos.rowcount, "insertovanih")

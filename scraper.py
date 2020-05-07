@@ -14,7 +14,6 @@ try:
      tag = request.parseHtml(sys.argv[1])
      rows = []
      for item in tag:
-          print(tag)
           # find all vraca niz a find ne
           single = item.find('div',{'class':'product-details'})  
 
