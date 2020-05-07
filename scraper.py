@@ -7,9 +7,8 @@ import sys, getopt
 try:
      #MAKE MAN PAGE FOR YOUR SCRIPT
      if(getopt.getopt(sys.argv,"h")[1][1] == '-h'):
-          f = open("man/man_page.txt")
-          print(f.read())
-          f.close()
+          with open("man/man_page.txt") as man:
+               print(man.read())
           exit(0)
      
      #tag = request.parseHtml('https://lyrastyle.rs/category/elektricne-gitare?brands=fender')
