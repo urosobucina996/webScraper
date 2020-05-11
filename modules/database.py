@@ -1,4 +1,5 @@
 import mysql.connector as mysql
+from modules import emailSender
 
 #mysql connection form my database
 connect = mysql.connect(
@@ -24,4 +25,4 @@ def executeQuery(data):
 
     connect.close()
 
-    print(mysqlcursos.rowcount, "insertovanih")
+    emailSender.scraperMail(mysqlcursos.rowcount)
