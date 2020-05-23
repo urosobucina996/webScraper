@@ -1,5 +1,6 @@
 import requests as req
 from bs4 import BeautifulSoup as soup
+import re
 
 #for stoping execution of scrip
 from sys import exit
@@ -16,13 +17,18 @@ def parseHtml(url):
 # open connection and grab pages content
     #uClient = uReq.Request(url,HEADERS)
     #url = ''
-    # regex for url in test progress ^(https|http):\/\/www\.([a-z]+)\.([a-z]*)$
+    # regex for url in test progress ^(https|http):\/\/((www)\.([a-z]+)|([a-z]+))\.([a-z]*)(\/[a-z-?=]*)*$
+
+    if re.findall("^(http(s)?):\/\/(www\.)?((?!www)[a-z]{3,}\.[a-z]{2,})(\/[a-z-?=]*)*$",url) == []:
+        print('You must enter valid url')
+        exit(0)
+    
     uClient = req.get(url,HEADERS)
     pageHtml = uClient.content
 
     if uClient.status_code != 200:
-        raise requests.HTTPError(content['message'])
-    exit(0)
+        print(f"Web site in not responding, server error {uClient.status_code}.")
+        exit(0)
 
 #html parsing
 # Connect to the URL
