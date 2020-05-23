@@ -16,8 +16,13 @@ def parseHtml(url):
 # open connection and grab pages content
     #uClient = uReq.Request(url,HEADERS)
     #url = ''
+    # regex for url in test progress ^(https|http):\/\/www\.([a-z]+)\.([a-z]*)$
     uClient = req.get(url,HEADERS)
     pageHtml = uClient.content
+
+    if uClient.status_code != 200:
+        raise requests.HTTPError(content['message'])
+    exit(0)
 
 #html parsing
 # Connect to the URL
