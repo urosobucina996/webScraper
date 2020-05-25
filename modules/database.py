@@ -1,15 +1,19 @@
 import mysql.connector as mysql
 from modules import emailSender
+from modules import loggingScrape
 
 #mysql connection form my database
-connect = mysql.connect(
-    host = '127.0.0.1',
-    port=3306,
-    user = 'uros',
-    password = 'uros',
-    database = 'script',
-    auth_plugin='mysql_native_password'
-)
+try:
+    connect = mysql.connect(
+        host = '127.0.0.1',
+        port=3306,
+        user = 'uros',
+        password = 'uros',
+        database = 'script',
+        auth_plugin='mysql_native_password'
+    )
+except Exception as e:
+    loggingScrape.logging.error(f'Database error: {e}')
 
 def executeQuery(data):
 
