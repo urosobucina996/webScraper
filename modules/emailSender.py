@@ -1,5 +1,6 @@
 import smtplib
 import datetime
+from modules import loggingScrape
 
 #DO NOT NAME email.py becouse email is module in python
 
@@ -33,4 +34,4 @@ def scraperMail(insertednum):
             server.sendmail(FROM,TO,message)
             server.quit()
     except Exception as e:
-        print(e)
+        loggingScrape.logging.error(f'Email error {e}')

@@ -3,6 +3,7 @@ from modules import database
 from sys import exit
 from datetime import datetime
 import sys, getopt
+from modules import loggingScrape
 
 try:
      #MAKE MAN PAGE FOR YOUR SCRIPT
@@ -28,6 +29,7 @@ try:
      database.executeQuery(rows)
      
 except IndexError:
+     loggingScrape.logging.error('User did not pass link as arugment.')
      print('Pass link.')
      exit(0)
 
