@@ -1,5 +1,6 @@
 import smtplib
 import datetime
+import sys
 from modules import loggingScrape
 
 #DO NOT NAME email.py becouse email is module in python
@@ -9,13 +10,16 @@ from modules import loggingScrape
 # command sudo python3 -m smtpd -c DebuggingServer -n localhost:1025
 
 
-# constants for email
+# constants for email testing
 SEVER = 'localhost'
 # port in DebbugingServer
 PORT = 1025
 
-FROM = 'mydevice@mail.com'
-TO = 'reveicer@mail.com'
+#SEVER = 'smtp.gmail.com'
+#PORT = 587
+
+FROM = 'obucina.uros.1@gmail.com'
+TO = 'urkeo196@gmail.com'
 
 def scraperMail(insertednum):
     message = '''\
@@ -31,7 +35,13 @@ def scraperMail(insertednum):
 
     try:
         with smtplib.SMTP(SEVER,PORT) as server:
+            
+            # using gmail
+            #server.starttls()
+            #server.login('email','password')
+            
             server.sendmail(FROM,TO,message)
+            
             server.quit()
     except Exception as e:
         loggingScrape.logging.error(f'Email error {e}')
