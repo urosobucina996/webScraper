@@ -21,7 +21,7 @@ PORT = 1025
 FROM = 'obucina.uros.1@gmail.com'
 TO = 'urkeo196@gmail.com'
 
-def scraperMail(insertednum):
+def scraper_mail(insertednum):
     message = '''\
     FROM = %s
     TO = %s

@@ -12,10 +12,12 @@ from sys import exit
 
 #fake python request to be browser request HEADERS is constant
 
-HEADERS = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'}
+HEADERS = {'User-Agent': '''Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) 
+                            AppleWebKit/537.36 (KHTML, like Gecko) 
+                            Chrome/35.0.1916.47 Safari/537.36'''}
 
 
-def parseHtml(url):
+def parse_html(url):
 
 
     # open connection and grab pages content
@@ -28,17 +30,17 @@ def parseHtml(url):
         loggingScrape.logging.error('Regex for url address failed.')
         exit(0)
     
-    uClient = req.get(url,HEADERS)
-    pageHtml = uClient.content
+    u_client = req.get(url,HEADERS)
+    page_html = u_client.content
 
     # 301 is redirection, may couse trouble
-    if uClient.status_code != 200:
+    if u_client.status_code != 200:
         loggingScrape.logging.error(f'Invalid url address {url}.')
-        print(f"Web site in not responding, server error {uClient.status_code}.")
+        print(f"Web site in not responding, server error {u_client.status_code}.")
         exit(0) 
 
 #html parsing
 # Connect to the URL
-    parsedPage = soup(pageHtml,"html.parser")
-    tag = parsedPage.body
+    parsed_page = soup(page_html,"html.parser")
+    tag = parsed_page.body
     return tag.findAll('div',{'class':'product-inner'})

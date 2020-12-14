@@ -3,6 +3,7 @@ from modules import emailSender
 from modules import loggingScrape
 import os
 
+
 #mysql connection form my database
 try:
     connect = mysql.connect(
@@ -17,7 +18,7 @@ try:
 except Exception as e:
     loggingScrape.logging.error(f'Database error: {e}')
 
-def executeQuery(data):
+def execute_query(data):
 
     # Try and catche database mistakes
 
@@ -25,7 +26,7 @@ def executeQuery(data):
     mysqlcursos = connect.cursor()
 
     # INSERT IGNORE je da se ne bi pravili duplikati imena u bazi
-    sql = "Insert IGNORE into guitars(name,price,created) values(%s,%s,%s)"
+    sql = "INSERT IGNORE INTO guitars(name,price,created) values(%s,%s,%s)"
 
     mysqlcursos.executemany(sql,data)
 
@@ -33,4 +34,4 @@ def executeQuery(data):
 
     connect.close()
 
-    emailSender.scraperMail(mysqlcursos.rowcount)
+    emailSender.scraper_mail(mysqlcursos.rowcount)
